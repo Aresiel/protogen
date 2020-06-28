@@ -18,10 +18,12 @@ logger.addHandler(handler)
 bot = commands.Bot(command_prefix=["p!", "?"])
 bot.remove_command('help')
 
+
 @bot.event
 async def on_ready():
     activity = discord.Game(name="in TPK | p!help", type=1)
     await bot.change_presence(status=discord.Status.online, activity=activity)
+
 
 async def on_error(self, ctx, error):
     if self.logger is None:
@@ -53,7 +55,7 @@ async def help(ctx):
     embed.add_field(name="**Description**", value="`shows help menu\nshows bot latency\nbot invite link\nglobal bot stats\nget user ID\nget user avatar\nrelated links\nsnuggle someone\nhug someone\npat someone\nboop someone\nsmooch someone\ncuddle someone\nrandom selection\nshows command info\nHONKS\nask Tooth a question\nban a member\nunban a member\nkick a member\nsoftban a member\ncast a poll\nask a yes/no question\nget server info`", inline=True)
     embed.add_field(name="developers:", value="`-` ChosenFate#5108\n`-` BluewytheRenegade#2923", inline=False)
     embed.set_thumbnail(url="https://www.dropbox.com/s/yx7z6iefnx0q576/Icon.jpg?dl=1")
-    embed.set_footer(text="Thank you, " + ctx.message.author.name + ", for using ProtoPaw!")
+    embed.set_footer(text=f"Thank you, {ctx.message.author.name}, for using ProtoPaw!")
     await ctx.send(embed=embed)
 
 
@@ -98,7 +100,7 @@ async def links(ctx):
     embed.add_field(name="Contact", value="ChosenFate#5108\nBluewytheRenegade#2923")
     embed.add_field(name="Social media:", value="Twitter | https://twitter.com/furrycontentuvs", inline=False)
     embed.set_thumbnail(url="https://www.dropbox.com/s/yx7z6iefnx0q576/Icon.jpg?dl=1")
-    embed.set_footer(text="Thank you, " + ctx.message.author.name + ", for using ProtoPaw!")
+    embed.set_footer(text=f"Thank you, {ctx.message.author.name}, for using ProtoPaw!")
     await ctx.send(embed=embed)
 
 
@@ -107,7 +109,7 @@ async def serverinfo(ctx):
     embed = discord.Embed(title="Server information", color=config.color)
     embed.add_field(name="Info:", value="Membercount:\nRegion:\n", inline=True)
     embed.add_field(name="Value", value=str(len(ctx.guild.members)) + "\n" + str(ctx.guild.region) + "\n", inline=True)
-    embed.set_author(name=ctx.guild.name + " Statistics", url="https://cdn.discordapp.com/icons/" + str(ctx.guild.id) + "/" + str(ctx.guild.icon) + ".webp?size=1024", icon_url="https://cdn.discordapp.com/icons/" + str(ctx.guild.id) + "/" + str(ctx.guild.icon) + ".webp?size=1024")
+    embed.set_author(name=f"{ctx.guild.name} Statistics", url="https://cdn.discordapp.com/icons/" + str(ctx.guild.id) + "/" + str(ctx.guild.icon) + ".webp?size=1024", icon_url="https://cdn.discordapp.com/icons/" + str(ctx.guild.id) + "/" + str(ctx.guild.icon) + ".webp?size=1024")
     await ctx.send(embed=embed)
 
 
@@ -207,10 +209,10 @@ async def randomchoice(ctx, arg1, arg2):
 async def info(ctx, arg):
     embed = discord.Embed(title='Help menu - Prefixes `p!` | `?`', color=config.color)
     embed.add_field(name=arg, value=getattr(cmds, arg), inline=True)
-    embed.add_field(name="Syntax of " + arg, value=getattr(syntax, arg), inline=True)
+    embed.add_field(name=f"Syntax of {arg}", value=getattr(syntax, arg), inline=True)
     embed.add_field(name="Developers:", value="`-` ChosenFate#5108\n`-` BluewytheRenegade#2923", inline=False)
     embed.set_thumbnail(url="https://www.dropbox.com/s/yx7z6iefnx0q576/Icon.jpg?dl=1")
-    embed.set_footer(text="Thank you, " + ctx.message.author.name + ", for using ProtoPaw!")
+    embed.set_footer(text=f"Thank you, {ctx.message.author.name}, for using ProtoPaw!")
     await ctx.send(embed=embed)
 
 
@@ -314,7 +316,7 @@ async def poll(ctx, *, arg):
     reactionlist = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣", "🔟"]
     embed = discord.Embed(title="Poll", color=config.color)
     for x in choice:
-        embed.add_field(name="Option " + reactionlist[n-1], value=f"{x}", inline=False)
+        embed.add_field(name=f"Option {reactionlist[n-1]}", value=f"{x}", inline=False)
         n = n+1
     embed.set_footer(text=f"Poll cast by {ctx.message.author}")
     botmsg = await ctx.send(embed=embed)
